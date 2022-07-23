@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Prueba desarrollador</title>
+    </head>
+    <body style="width: 100%;">
+        <div>
+            <div id='titulo' style="text-align:center;">
+                <!-- Titulo-->
+                <h2 style='background-color:darkblue;color:white' >Cuadrangular de futbol</h2>
+            </div>
+
+            <form action="Servlet" method="post">
+
+                <!-- --textos de la parte superior de la pantalla-->
+
+                <div style="position: absolute; left: 290px; top: 40px">
+                    <h3 style='background-color:yellow;color:green'>SEMIFINAL</h3>
+                </div>
+
+                <div style="position: absolute; right: 290px; top: 40px">
+                    <h3 style='background-color:yellow;color:green'>SEMIFINAL</h3>
+                </div>
+
+                <div style="position: absolute; left: 50%; top: 40px; width:60px; margin-left: -30px">
+                    <h3 style='background-color:yellow;color:green'>FINAL</h3>
+                </div>
+				
+                <dialog name='dpartido'> 
+                    <center>
+                        <!-- Caja de texto no editable que aparece en el popup "resultados del partido" o "tiempo complementario" o "penales"-->
+                        <input type ="text" name ='texto' readonly="readonly" style=" text-align:center" value="${tex}"><br>
+
+                        <!-- Caja de texto no editable que aparece en el popup con nombre del equipo1-->
+                        <input type ="text" name ='equipo1' readonly="readonly" style=" text-align:center" value="${t1}">
+
+                        <!-- Caja de texto en la que se ingresan los goles del equipo1-->
+                        <input type ="text" name ='Gequipo1' style=" text-align:center"><br>
+
+                        <!-- --Caja de texto no editable que aparece en el popup con nombre del equipo2-->
+                        <input type ="text" name ='equipo2' readonly="readonly" style=" text-align:center" value="${t2}">
+
+                        <!-- --Caja de texto en la que se ingresan los goles del equipo2-->
+                        <input type ="text" name ='Gequipo2' style=" text-align:center"><br>
+
+                        <!-- --boton que hace el submit o cambia los datos de arriba en caso de empate-->
+                        <input type ="button" name ='enviar' value = "enviar" onclick="cerrar()"><br>
+
+                        <!-- --Caja de texto escondida con un atributo partido en el cual se coloca que partido se esta enviando-->
+                        <input type ="text" name ='partido' readonly="readonly" style="visibility: hidden" value="<var>partido</var>">
+
+                    </center>
+                </dialog>
+
+                <!-- --Lineas que unen los partidos-->
+
+                <div style="position: absolute; right: 362px ; top: 160px">
+                    <img src="img/lineasd.png" name='lineasd' id="lineasd" width="60" height="200"/>
+                </div>
+
+                <div style="position: absolute; left: 362px ; top: 160px">
+                    <img src="img/lineasi.png" name='lineasi' id="lineasi" width="60" height="200"/>
+                </div>
+
+                <!-- --Campos donde se registran los nombres de los equipos-->
+                <div id="campo1" style="position: absolute; right: 302px; top: 140px">
+                </div>
+
+                <div id="campo2" style="position: absolute; right: 302px; top: 340px">
+                </div>
+
+                <div id="campo3" style="position: absolute; left: 302px; top: 140px">
+                </div>
+
+                <div id="campo4" style="position: absolute; left: 302px; top: 340px">
+                </div>
+
+                <!-- --Campos de los finalistas-->
+                <div id="campofinalista1" style="position: absolute; right: 412px; top: 240px">
+                </div>
+
+                <div id="campofinalista2" style="position: absolute; left: 412px; top: 240px">          
+                </div>
+
+                <!-- Campo del perdedor de la semifinal derecha-->
+                <div id="campoperdedor1" style="position: absolute; right: 412px; top: 420px">
+                </div>
+
+                <!-- Campo del perdedor de la semifinal izquierda-->
+                <div id="campoperdedor2" style="position: absolute; left: 412px; top: 420px">
+                </div>
+
+                <!-- botones para registrar a los equipos-->
+                <div style="position: absolute; right: 180px ; top: 150px">
+                    <input type ="button" name ='btnequipo1' value = "Registrar" onclick="registrar('equipo1')"><br>
+                </div>
+
+                <div style="position: absolute; right: 180px ; top: 350px">
+                    <input type ="button" name ='btnequipo2' value = "Registrar" onclick="registrar('equipo2')"><br>
+                </div>
+
+                <div style="position: absolute; left: 180px ; top: 150px">
+                    <input type ="button" name ='btnequipo3' value = "Registrar" onclick="registrar('equipo3')"><br>
+                </div>
+
+                <div style="position: absolute; left: 180px ; top: 350px">
+                    <input type ="button" name ='btnequipo4' value = "Registrar" onclick="registrar('equipo4')"><br>
+                </div>
+
+                <!-- --Campos para presentar resultados-->
+                <div style="text-align:center;">
+                    <!-- --Imagen de la copa-->
+                    <br>
+                    <img src="img/logo.jpg" name='logo' id="logo" width="100" height="50"/><br>
+                    <br>
+
+                    <!-- Campo para el campeon-->
+                    <span style='background-color:yellow;color:green'>primer puesto</span><br>
+                    <input type ="text" name ='puesto1' readonly="readonly" style=" text-align:center;width:60px;height:40px;">
+                    <br>
+
+                    <!-- Boton para ingresar los datos de la final-->
+                    <input type ="button" name ='partido3' value = "resultado final" onclick="abrir('resultados del partido','finalista1', 'finalista2', 3)">
+                    <br>
+
+                    <!-- Campo para el 2do puesto-->
+                    <span style='background-color:yellow;color:green'>Segundo puesto</span><br>
+                    <input type ="text" name ='puesto2' readonly="readonly" style=" text-align:center;width:60px;height:40px;">
+                    <br>
+                    <br>
+
+                    <!-- Campo para el 3er puesto-->
+                    <span style='background-color:yellow;color:green'>Tercer puesto</span><br>
+                    <input type ="text" name ='puesto3' readonly="readonly" style=" text-align:center;width:60px;height:40px;">
+                    <br>
+
+                    <!-- Boton para ingresar los datos del partido por el 3er puesto-->
+                    <input type ="button" name ='partido4' value = "insertar3y4" onclick="abrir('resultados del partido','perdedor1', 'perdedor2', 4)">
+                    <br>
+
+                    <!-- Campo para el 4to puesto-->
+                    <span style='background-color:yellow;color:green'>Cuarto puesto</span><br>
+                    <input type ="text" name ='puesto4' readonly="readonly" style=" text-align:center;width:60px;height:40px;">
+                    <br>
+					<br>
+					<br>
+
+                    <!-- Tabla en la que se colocan los datos de los partidos-->
+                    <table id="tabla" border="1" style="margin: 0 auto;">
+                        <!-- Cabecera de la tabla-->
+                        <tr style="text-align:center;">
+                            <th>Partido</th>
+                            <th>Equipo</th>
+                            <th>Goles</th>
+                            <th>Tiempo complementario</th>
+                            <th>penales</th>
+                        </tr>
+
+                    </table>
+                </div>
+            </form>
+
+            <div style="position: absolute; right: 292px ; top: 250px">
+                <input type ="button" name ='partido1' value = "resultados" onclick="abrir('resultados del partido','campoequipo1', 'campoequipo2', 1)"><br>
+            </div>
+
+            <div style="position: absolute; left: 292px ; top: 250px">
+                <input type ="button" name ='partido2' value = "resultados" onclick="abrir('resultados del partido','campoequipo3', 'campoequipo4', 2)"><br>
+            </div>
+        </div>
+        
+
+        <!-- Codigo en javascript en el que se hacen las funciones que llaman los botones-->
+        <script src="script.js"></script>
+	</body>
+</html>
